@@ -1,16 +1,21 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "back-end semana OmniStack 10",
+  "description": "back-end semana OmniStack 10 - DevRadar",
   "main": "index.js",
   "author": "Remulo Costa <remulo.costa@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon src/index.js",
+    "dev:debug": "nodemon --inspect src/server.js",
+    "queue": "nodemon src/queue.js"
   },
   "private": false,
   "dependencies": {
-    "express": "^4.17.1"
+    "axios": "^0.19.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.8.7"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
