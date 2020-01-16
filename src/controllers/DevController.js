@@ -78,5 +78,18 @@ module.exports = {
     }
   },
 
-  async destroy() {},
+  async destroy(request, response) {
+    const { id } = request.params;
+    try {
+      const dev = await Dev.findByIdAndRemove(id);
+
+      if (!dev) {
+        throw 'Dev informado não foi localizado';
+      }
+
+      return response.json({ OK: 'Dev removido' });
+    } catch (err) {
+      return response.status(400).json({ Error: err });
+    }
+  },
 };
