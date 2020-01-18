@@ -1,7 +1,6 @@
 const axios = require('axios');
 
 const Dev = require('../models/Dev');
-
 const parseStringAsArray = require('../utils/parseStringAsArray');
 
 module.exports = {
@@ -14,7 +13,10 @@ module.exports = {
   async store(request, response) {
     const { github_username, techs, latitude, longitude } = request.body;
 
-    let dev = await Dev.findOne({ github_username });
+    let dev = await Dev.findOne({ github_username }).collation({
+      locale: 'en',
+      strength: 1,
+    });
 
     if (!dev) {
       const apiResponse = await axios.get(
@@ -22,8 +24,6 @@ module.exports = {
       );
 
       const { name = login, avatar_url, bio } = apiResponse.data;
-
-      // console.log(name, avatar_url, bio, github_username);
 
       const techsArray = parseStringAsArray(techs);
 
