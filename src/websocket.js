@@ -6,14 +6,6 @@ const connections = [];
 
 let io;
 
-function toLower(list) {
-  var result = [];
-  $.each(list, function(i, e) {
-    if ($.inArray(e.toLowerCase(), result) == -1) result.push(e.toLowerCase());
-  });
-  return result;
-}
-
 exports.setupWebSocket = server => {
   io = socketio(server);
 

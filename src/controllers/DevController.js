@@ -12,7 +12,7 @@ module.exports = {
   },
 
   async store(request, response) {
-    const { github_username, techs, latitude, longitude } = request.body;
+    const { github_username, latitude, longitude, techs } = request.body.data;
 
     let dev = await Dev.findOne({ github_username }).collation({
       locale: 'en',
@@ -58,7 +58,7 @@ module.exports = {
   async update(request, response) {
     // Name, avatar, localização, tecnologias.
     const { id } = request.params;
-    const { name, avatar_url, techs, latitude, longitude } = request.body;
+    const { name, avatar_url, techs, latitude, longitude } = request.body.data;
 
     const techsArray = parseStringAsArray(techs);
 
