@@ -3,8 +3,13 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const routes = require('./routes');
+const http = require('http');
+const { setupWebSocket } = require('./websocket');
 
 const app = express();
+const server = http.Server(app);
+
+setupWebSocket(server);
 
 mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
@@ -24,4 +29,4 @@ Cagrrega as rotas da aplicação
 */
 app.use(routes);
 
-app.listen(process.env.APP_PORT);
+server.listen(process.env.APP_PORT);
