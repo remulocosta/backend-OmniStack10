@@ -29,4 +29,4 @@ Cagrrega as rotas da aplicação
 */
 app.use(routes);
 
-server.listen(process.env.APP_PORT);
+server.listen(process.env.PORT || process.env.APP_PORT);
