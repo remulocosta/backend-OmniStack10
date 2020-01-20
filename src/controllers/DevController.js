@@ -58,7 +58,7 @@ module.exports = {
   async update(request, response) {
     // Name, avatar, localização, tecnologias.
     const { id } = request.params;
-    const { name, avatar_url, techs, latitude, longitude } = request.body.data;
+    const { name, techs, latitude, longitude } = request.body.data;
 
     const techsArray = parseStringAsArray(techs);
 
@@ -72,7 +72,6 @@ module.exports = {
         id,
         {
           name,
-          avatar_url,
           techs: techsArray,
           location,
         },

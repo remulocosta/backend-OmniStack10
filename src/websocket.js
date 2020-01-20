@@ -26,11 +26,12 @@ exports.setupWebSocket = server => {
 exports.findConnections = (coordinates, techs) => {
   return connections.filter(connection => {
     return (
+      console.log(connections),
       calculateDistance(coordinates, connection.coordinates) < 10 &&
-      connection.techs.some(item => {
-        const techsLowerCase = techs.map(tech => tech.toLowerCase());
-        return techsLowerCase.includes(item.toLowerCase());
-      })
+        connection.techs.some(item => {
+          const techsLowerCase = techs.map(tech => tech.toLowerCase());
+          return techsLowerCase.includes(item.toLowerCase());
+        })
     );
   });
 };
